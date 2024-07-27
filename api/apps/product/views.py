@@ -32,7 +32,7 @@ class ProductUpdateView(APIView):
             product = Product.objects.get(id=id)
         except ObjectDoesNotExist:
             return Response({
-                "error": "Product does not exist"
+                "error": f"No product with id - {id}"
             }, status=status.HTTP_404_NOT_FOUND)
         serializer = ProductSerializer(product, data=request.data, partial=True)
         if serializer.is_valid():
